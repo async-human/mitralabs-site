@@ -5,348 +5,524 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MitraLabs: managed support operations for B2B software teams</title>
 <meta name="description" content="MitraLabs drafts replies to your most repetitive support tickets from your own docs. Your team reviews and sends them from the help desk you already use. 30-day pilot on one category.">
-<meta property="og:title" content="MitraLabs: managed support operations for B2B software teams">
-<meta property="og:description" content="Repeat tickets, drafted for you. Sent by your team. Start with a 30-day pilot on one ticket category.">
+<meta property="og:title" content="MitraLabs: repeat tickets, drafted for you">
+<meta property="og:description" content="We draft replies to your repetitive support tickets. Your team reviews and sends them. Start with a 30-day pilot on one category.">
 <meta property="og:url" content="https://mitralabs.co">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E1330'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<meta name="theme-color" content="#F2F3EE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2315211D'/%3E%3Cpath d='M18 44V20l14 14 14-14v24' fill='none' stroke='%23E9B949' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
-html{scroll-behavior:smooth}
-body{margin:0;background:#F5F6F8}
+:root{
+  --bg:#F2F3EE; --surface:#FFFFFF; --ink:#15211D; --text:#3D4945; --muted:#5E6B66;
+  --line:#DCDFD6; --line-soft:#E8EAE3;
+  --green:#1F6F5C; --green-soft:#E3EFEA; --green-ink:#14513F;
+  --mark:#E9B949; --mark-soft:#FBEFC8; --mark-ink:#6B4E06;
+  --display:'Familjen Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --body:'Hanken Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --radius-lg:28px; --radius:18px; --radius-sm:10px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;
+}
 *{box-sizing:border-box}
-a{color:#2F3FD0}a:hover{color:#0E1330}
-</style>
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--green);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:600 16px/1 var(--body);text-decoration:none;cursor:pointer;border:0;transition:transform .25s var(--ease),background-color .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 8px 20px -10px rgba(21,33,29,.6)}
+.btn-primary:hover{transform:translateY(-1px);background:#22342E}
+.btn-primary:active{transform:translateY(0)}
+.btn-quiet{color:var(--ink);padding:0 6px;min-height:44px;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:6px;text-decoration-thickness:2px;transition:text-decoration-color .2s}
+.btn-quiet:hover{text-decoration-color:var(--ink)}
 
+/* Header */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.top.scrolled{border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);font:700 21px/1 var(--display);letter-spacing:-.02em}
+.brand svg{flex-shrink:0}
+.nav{display:flex;gap:30px;font-size:15px;font-weight:500}
+.nav a{text-decoration:none;color:var(--muted);transition:color .2s;padding:10px 0}
+.nav a:hover{color:var(--ink)}
+.top .btn{min-height:44px;padding:0 20px;font-size:15px}
+@media (max-width:880px){.nav{display:none}}.top .short{display:none}@media (max-width:520px){.top .long{display:none}.top .short{display:inline}}
+
+/* Hero */
+.hero{padding:clamp(48px,7vw,96px) 0 clamp(64px,8vw,112px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:780px;height:780px;background:radial-gradient(closest-side,rgba(31,111,92,.10),transparent 70%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(40px,5vw,72px);align-items:center;position:relative}
+@media (max-width:980px){.hero .wrap{grid-template-columns:1fr}}
+.hero-copy{display:flex;flex-direction:column;gap:28px}
+.status{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;font-size:14px;font-weight:500;color:var(--green-ink);background:var(--green-soft);padding:7px 14px 7px 12px;border-radius:999px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(31,111,92,.5);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(31,111,92,.45)}70%{box-shadow:0 0 0 9px rgba(31,111,92,0)}100%{box-shadow:0 0 0 0 rgba(31,111,92,0)}}
+.hero h1{font-size:clamp(40px,4.3vw,62px);line-height:.98;letter-spacing:-.045em;font-weight:700}
+.hero h1 .line{display:block;white-space:nowrap}@media (max-width:420px){.hero h1 .line{white-space:normal}}
+.hero h1 .sent{position:relative;display:inline-block;z-index:0}
+.hero h1 .sent::after{content:"";position:absolute;left:-.06em;right:-.06em;bottom:.1em;height:.22em;background:var(--mark);z-index:-1;border-radius:4px;transform-origin:left;transform:scaleX(0);animation:swipe .9s .9s var(--ease) forwards}
+@keyframes swipe{to{transform:scaleX(1)}}
+.lede{font-size:clamp(18px,1.5vw,20px);line-height:1.6;max-width:33em;color:var(--text)}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.trust-row{display:flex;flex-wrap:wrap;gap:10px 28px;font-size:15px;color:var(--muted);padding-top:6px}
+.trust-row span{display:inline-flex;align-items:center;gap:8px}
+.trust-row svg{color:var(--green)}
+
+/* Live demo */
+.demo{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:0 1px 2px rgba(21,33,29,.04),0 40px 80px -40px rgba(21,33,29,.35);overflow:hidden}
+.demo-bar{white-space:nowrap;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line-soft);font-size:13.5px;color:var(--muted)}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.demo-bar b{color:var(--ink);font-weight:600}
+.demo-grid{display:grid;grid-template-columns:180px minmax(0,1fr);height:440px}
+@media (max-width:560px){.qname{display:none}.demo-grid{grid-template-columns:1fr;height:auto;min-height:400px}.queue{display:none}}
+.queue{border-right:1px solid var(--line-soft);padding:12px;overflow:hidden;display:flex;flex-direction:column;gap:6px;background:#FAFBF8}
+.q-item{padding:10px 12px;border-radius:12px;font-size:13px;line-height:1.35;color:var(--muted);transition:background-color .4s var(--ease),color .4s;position:relative}
+.q-item b{display:block;color:var(--ink);font-weight:600;font-size:13px;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.q-item.active{background:var(--green-soft);color:var(--green-ink)}
+.q-item .tag{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:6px;background:var(--line-soft);color:var(--muted);transition:all .4s}
+.q-item.done .tag{background:var(--ink);color:#fff}
+.q-item.new{animation:slidein .6s var(--ease)}
+@keyframes slidein{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.thread{overflow:hidden;padding:18px 20px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.msg-in{font-size:15px;line-height:1.5;color:var(--ink);font-weight:500;transition:opacity .4s}
+.msg-meta{font-size:12.5px;color:var(--muted);margin-bottom:4px;font-weight:400}
+.draft{border:1px solid var(--line);border-radius:16px;padding:16px 18px;position:relative;transition:border-color .5s var(--ease),box-shadow .5s var(--ease)}
+.draft.ready{border-color:var(--green);box-shadow:0 0 0 4px var(--green-soft)}
+.draft-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.draft-head .who{white-space:nowrap;display:inline-flex;align-items:center;gap:7px;color:var(--green-ink);font-weight:600}
+.spark{width:16px;height:16px;border-radius:5px;background:var(--green);display:inline-grid;place-items:center}
+.draft-body{font-size:14px;line-height:1.55;min-height:132px;color:var(--text)}
+.draft-body .caret{display:inline-block;width:2px;height:1.05em;background:var(--green);vertical-align:-2px;margin-left:1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.edit-old{text-decoration:line-through;text-decoration-color:#B54A3A;color:var(--muted)}
+.edit-new{background:var(--mark-soft);color:var(--mark-ink);border-radius:4px;padding:0 4px;box-shadow:inset 0 -2px 0 var(--mark)}
+.draft-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft);min-height:48px}
+.reviewer{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);opacity:0;transform:translateY(4px);transition:all .4s var(--ease)}
+.reviewer.show{opacity:1;transform:none}
+.avatar{width:24px;height:24px;border-radius:50%;background:var(--mark);color:var(--mark-ink);display:grid;place-items:center;font-size:11px;font-weight:700}
+.send{font:600 13.5px/1 var(--body);border:0;border-radius:999px;padding:10px 16px;background:var(--line-soft);color:var(--muted);transition:all .35s var(--ease);display:inline-flex;gap:7px;align-items:center}
+.send.armed{background:var(--ink);color:#fff}
+.send.sent{background:var(--green);color:#fff}
+.demo-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-soft)}
+.demo-stats div{padding:14px 20px;font-size:12.5px;color:var(--muted)}
+.demo-stats div+div{border-left:1px solid var(--line-soft)}
+.demo-stats b{display:block;font:700 22px/1.1 var(--display);color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.demo-note{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+
+/* Sections */
+section.block{padding:clamp(72px,9vw,128px) 0}
+.sec-head{max-width:720px;display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(40px,5vw,64px)}
+.sec-head h2{font-size:clamp(34px,4.2vw,54px);line-height:1.04;letter-spacing:-.035em}
+.sec-head p{font-size:19px}
+.band{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dark{background:var(--ink);color:#C9D3CF}
+.dark h2,.dark h3{color:#fff}
+
+/* Steps: a real sequence */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;counter-reset:s;position:relative}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+.steps li{counter-increment:s;padding:0 clamp(16px,2.4vw,36px) 0 0;position:relative}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);font:700 17px/1 var(--display);color:var(--ink);background:var(--bg);position:relative;z-index:1;margin-bottom:24px}
+.steps li:nth-child(2)::before{background:var(--green);border-color:var(--green);color:#fff}
+.steps li:nth-child(3)::before{background:var(--mark);border-color:var(--mark);color:var(--mark-ink)}
+.steps::after{content:"";position:absolute;left:22px;right:calc(33.3% - 22px);top:22px;height:1.5px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
+@media (max-width:860px){.steps::after{display:none}.steps li{padding:0 0 36px}}
+.steps h3{font-size:24px;line-height:1.2;margin-bottom:10px}
+.steps p{font-size:16.5px;max-width:30em}
+
+/* Pilot */
+.pilot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:start}
+@media (max-width:900px){.pilot{grid-template-columns:1fr}}
+.included{list-style:none;margin:28px 0 36px;padding:0}
+.included li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:15px 0;border-top:1px solid var(--line-soft);color:var(--ink);font-size:16.5px}
+.included li:last-child{border-bottom:1px solid var(--line-soft)}
+.included svg{margin-top:3px;color:var(--green)}
+.report{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(24px,3vw,36px);position:sticky;top:100px}
+.report-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted);margin-bottom:24px}
+.report-head b{color:var(--ink);font:600 18px/1.2 var(--display);letter-spacing:-.01em}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+.kpis b{display:block;font:700 clamp(34px,3.6vw,46px)/1 var(--display);color:var(--ink);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.kpis span{font-size:14px}
+.bars{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:14px}
+.bars h3{font-size:15px;letter-spacing:-.005em}
+.bar-row{font-size:14.5px}
+.bar-row div{display:flex;justify-content:space-between;margin-bottom:6px}
+.bar-row div span:last-child{color:var(--muted);font-variant-numeric:tabular-nums}
+.track{height:8px;border-radius:4px;background:var(--line-soft);overflow:hidden}
+.fill{height:100%;border-radius:4px;background:var(--green);width:0;transition:width 1.3s var(--ease)}
+.in-view .fill{width:var(--w)}
+.insight{display:grid;grid-template-columns:24px 1fr;gap:10px;margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--mark-soft);color:var(--mark-ink);font-size:14.5px;line-height:1.5}
+.sample{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* Compare */
+.compare{border-radius:var(--radius-lg);overflow:hidden;border:1px solid #2A3A35;overflow-x:auto}
+.compare table{width:100%;min-width:780px;border-collapse:collapse;font-size:16px;line-height:1.5;text-align:left}
+.compare th,.compare td{padding:22px 26px;vertical-align:top;border-bottom:1px solid #26352F}
+.compare tr:last-child th,.compare tr:last-child td{border-bottom:0}
+.compare thead th{font-weight:500;color:#8FA19A;font-size:15px}
+.compare thead th.us{color:var(--ink);background:var(--mark);font:700 19px/1.2 var(--display);letter-spacing:-.01em}
+.compare tbody th{color:#fff;font-weight:600;width:18%}
+.compare td.us{background:#1D2C27;color:#fff}
+
+/* Trust */
+.trust{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,88px);align-items:start}
+@media (max-width:900px){.trust{grid-template-columns:1fr}}
+.trust-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+@media (max-width:560px){.trust-list{grid-template-columns:1fr}}
+.trust-list div{padding:26px 24px 26px 0;border-bottom:1px solid var(--line)}
+.trust-list h3{font-size:19px;margin-bottom:6px}
+.trust-list p{font-size:15.5px}
+
+/* FAQ */
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font:600 clamp(19px,1.8vw,22px)/1.3 var(--display);color:var(--ink);letter-spacing:-.015em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{flex-shrink:0;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:transform .35s var(--ease),background-color .3s,border-color .3s}
+.faq details[open] summary .pm{transform:rotate(45deg);background:var(--ink);border-color:var(--ink);color:#fff}
+.faq .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.faq details[open] .ans{grid-template-rows:1fr}
+.faq .ans>div{overflow:hidden}
+.faq .ans p{padding:0 56px 26px 0;font-size:17px}
+
+/* Founder + CTA */
+.founder{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;max-width:860px;margin-top:clamp(56px,7vw,88px);padding-top:clamp(40px,5vw,56px);border-top:1px solid var(--line)}
+.founder .face{width:96px;height:96px;border-radius:50%;background:var(--ink);color:var(--mark);display:grid;place-items:center;font:700 32px/1 var(--display)}
+.founder h3{font-size:24px;margin-bottom:6px}
+.founder p{font-size:16.5px;max-width:36em}
+@media (max-width:560px){.founder{grid-template-columns:1fr}}
+.cta{position:relative;overflow:hidden;border-radius:clamp(24px,3vw,40px);background:var(--green);color:#D7EBE4;padding:clamp(40px,7vw,96px) clamp(24px,6vw,88px);display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:32px 56px;align-items:end}
+.cta::after{content:"";position:absolute;right:-120px;top:-160px;width:460px;height:460px;border-radius:50%;border:70px solid rgba(233,185,73,.16);pointer-events:none}
+@media (max-width:860px){.cta{grid-template-columns:1fr}}
+.cta h2{color:#fff;font-size:clamp(34px,4.6vw,60px);line-height:1.02;letter-spacing:-.04em;margin-bottom:18px}
+.cta p{font-size:18px;max-width:30em}
+.cta .actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px;position:relative;z-index:1}
+.cta .btn-primary{background:var(--mark);color:var(--ink);box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
+.cta .btn-primary:hover{background:#F2C75E}
+.cta .btn-quiet{color:#fff;text-decoration-color:rgba(255,255,255,.35)}
+.cta .btn-quiet:hover{text-decoration-color:#fff}
+footer{padding:36px 0 48px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 32px;font-size:14.5px;color:var(--muted)}
+footer a{text-decoration:none}footer a:hover{color:var(--ink)}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 26px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .hero h1 .sent::after{transform:scaleX(1)}
+}
+</style>
 </head>
 <body>
-<div style="--accent: #2F3FD0; background: #F5F6F8; color: #3A4160; font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased">
 
-<header style="border-bottom: 1px solid #DFE2EA; background: #F5F6F8">
-<div style="max-width: 1180px; margin: 0 auto; padding: 18px clamp(20px, 5vw, 40px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
-<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0E1330; min-height: 44px">
-<span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: #0E1330; color: #FFFFFF; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 20px">M</span>
-<span style="font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.02em">MitraLabs</span>
-</a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; font-size: 15px; font-weight: 500">
-<a href="#how" style="color: #3A4160; text-decoration: none; padding: 12px 0">How it works</a>
-<a href="#pilot" style="color: #3A4160; text-decoration: none; padding: 12px 0">The pilot</a>
-<a href="#why" style="color: #3A4160; text-decoration: none; padding: 12px 0">Why MitraLabs</a>
-<a href="#trust" style="color: #3A4160; text-decoration: none; padding: 12px 0">Data handling</a>
-<a href="#faq" style="color: #3A4160; text-decoration: none; padding: 12px 0">FAQ</a>
-</nav>
-<a href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #0E1330; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 500">Book a 15-minute intro</a>
-</div>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="MitraLabs home">
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#15211D"/><path d="M18 44V20l14 14 14-14v24" fill="none" stroke="#E9B949" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      MitraLabs
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#pilot">The pilot</a>
+      <a href="#why">Why us</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call"><span class="long">Book a 15-minute intro</span><span class="short">Book intro</span></a>
+  </div>
 </header>
 
-<main id="top">
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="status"><i></i>Now taking pilots for B2B software teams</span>
+      <h1><span class="line">Repeat tickets,</span><span class="line">drafted for you.</span><span class="line"><span class="sent">Sent by your team.</span></span></h1>
+      <p class="lede">We draft replies to your most repetitive support tickets from your own docs and past answers. Your agents review and send them from the help desk you already use, and every week you see what keeps coming up.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call">Book a 15-minute intro</a>
+        <a class="btn-quiet" href="#pilot">See how the pilot works</a>
+      </div>
+      <div class="trust-row">
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Every reply reviewed by your team</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>No new tool to roll out</span>
+      </div>
+    </div>
 
-<section style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) clamp(20px, 5vw, 40px) clamp(56px, 7vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: clamp(40px, 5vw, 64px); align-items: center">
-<div style="display: flex; flex-direction: column; gap: 28px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #2F3FD0)">Managed support operations for B2B software teams</div>
-<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: clamp(40px, 5.4vw, 66px); line-height: 1.03; letter-spacing: -0.035em; color: #0E1330; text-wrap: balance">Repeat tickets, drafted for you. <span style="color: #B8500B">Sent by your team.</span></h1>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; max-width: 520px; text-wrap: pretty">MitraLabs drafts replies to your most repetitive support tickets from your own docs and past answers. Your team reviews and sends them from the help desk you already use, and every week you get a report on what keeps coming up.</p>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px">
-<a href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; background: var(--accent, #2F3FD0); color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 500">Book a 15-minute intro
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-</a>
-<a href="#pilot" style="display: inline-flex; align-items: center; min-height: 44px; color: #0E1330; font-size: 16px; font-weight: 500; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #A9AFC6">See how the pilot works</a>
-</div>
-</div>
-
-<div style="border: 1px solid #DFE2EA; border-radius: 24px; padding: clamp(18px, 2.4vw, 28px); background-color: #EEF0F4; background-image: radial-gradient(#CDD2E0 1px, transparent 1px); background-size: 22px 22px; display: flex; flex-direction: column; gap: 14px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13.5px; font-weight: 500; color: #3A4160">
-<span style="display: inline-flex; align-items: center; gap: 8px; background: #F5F6F8; border-radius: 999px; padding: 4px 12px 4px 10px"><span style="width: 9px; height: 9px; border-radius: 50%; background: var(--accent, #2F3FD0)"></span>Drafted by MitraLabs</span>
-<span style="display: inline-flex; align-items: center; gap: 8px; background: #F5F6F8; border-radius: 999px; padding: 4px 12px 4px 10px"><span style="width: 9px; height: 9px; border-radius: 2px; background: #B8500B"></span>Reviewed by your team</span>
-</div>
-
-<div style="background: #FFFFFF; border: 1px solid #DFE2EA; border-radius: 16px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(14, 19, 48, 0.05)">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #596080">
-<span>Incoming ticket</span>
-<span>#45821 · 2h ago</span>
-</div>
-<div style="font-size: 18px; line-height: 1.4; font-weight: 500; color: #0E1330">How do I reconnect our integration after rotating API credentials?</div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px">
-<span style="font-size: 13px; padding: 3px 10px; border-radius: 6px; background: #F0F1F5; color: #3A4160">Integration</span>
-<span style="font-size: 13px; padding: 3px 10px; border-radius: 6px; background: #F0F1F5; color: #3A4160">Configuration</span>
-</div>
-</div>
-
-<div style="display: flex; justify-content: center; color: #596080" aria-hidden="true">
-<svg width="20" height="26" viewBox="0 0 20 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1v22"></path><path d="M4 18l6 6 6-6"></path></svg>
-</div>
-
-<div style="background: #FFFFFF; border: 1px solid #DFE2EA; border-top: 3px solid var(--accent, #2F3FD0); border-radius: 16px; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 12px 32px -16px rgba(14, 19, 48, 0.25)">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent, #2F3FD0)">
-<span>Draft reply</span>
-<span style="color: #596080">From your setup guide + 3 past replies</span>
-</div>
-<div style="font-size: 15.5px; line-height: 1.55; color: #0E1330">Here are the steps to reconnect your integration after rotating API credentials:</div>
-<ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; font-size: 15.5px; line-height: 1.5; color: #3A4160">
-<li>Update the API key in your integration settings.</li>
-<li>Verify the environment and redirect URL.</li>
-<li>Test the connection <span style="text-decoration: line-through; color: #596080">from the dashboard</span> <span style="background: #FCEFE2; color: #8F3D06; border-radius: 4px; padding: 1px 6px; font-weight: 500">using the /health endpoint</span>.</li>
-<li>If you still see an error, send us the request ID and we will take a look.</li>
-</ol>
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-top: 14px; border-top: 1px solid #ECEEF3">
-<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #8F3D06">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg>
-One edit by your agent, then sent
-</span>
-<span style="font-size: 13px; color: #596080">Sent from your help desk</span>
-</div>
-</div>
-</div>
+    <div>
+      <div class="demo" aria-label="Example of a ticket being drafted, reviewed and sent" role="img">
+        <div class="demo-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><b>Your help desk</b><span class="qname"> · Integrations queue</span></span>
+          <span id="clock">Today</span>
+        </div>
+        <div class="demo-grid">
+          <div class="queue" id="queue" aria-hidden="true"></div>
+          <div class="thread" aria-hidden="true">
+            <div>
+              <div class="msg-meta" id="from">Customer</div>
+              <div class="msg-in" id="question"></div>
+            </div>
+            <div class="draft" id="draft">
+              <div class="draft-head">
+                <span class="who"><span class="spark"><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>Draft by MitraLabs</span>
+                <span id="source">From your docs</span>
+              </div>
+              <div class="draft-body" id="body"></div>
+              <div class="draft-foot">
+                <span class="reviewer" id="reviewer"><span class="avatar">PR</span><span id="reviewNote">Priya made one edit</span></span>
+                <span class="send" id="send">Send reply</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-stats" aria-hidden="true">
+          <div><b id="sDrafted">126</b>drafted this week</div>
+          <div><b id="sAccepted">72%</b>sent without edits</div>
+          <div><b id="sSaved">9.4h</b>agent time saved</div>
+        </div>
+      </div>
+      <p class="demo-note">Example workflow with illustrative numbers.</p>
+    </div>
+  </div>
 </section>
 
-<section aria-label="What to expect" style="border-top: 1px solid #DFE2EA; border-bottom: 1px solid #DFE2EA; background: #FFFFFF">
-<div style="max-width: 1180px; margin: 0 auto; padding: 32px clamp(20px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px 48px">
-<div style="display: flex; flex-direction: column; gap: 4px">
-<div style="font-weight: 600; color: #0E1330">One ticket category first</div>
-<div style="font-size: 15.5px">Start narrow, so the result is easy to measure.</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 4px">
-<div style="font-weight: 600; color: #0E1330">Your team stays in control</div>
-<div style="font-size: 15.5px">Every reply is reviewed by your agents before it goes out.</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 4px">
-<div style="font-weight: 600; color: #0E1330">A weekly insight report</div>
-<div style="font-size: 15.5px">See what was handled, what was edited and what repeated.</div>
-</div>
-</div>
+<section class="block band" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Start narrow. Prove it works. Then expand.</h2>
+      <p>We begin with one repetitive ticket category, so your team can judge quality, speed and effort saved without changing your support operation overnight.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Pick one repetitive category</h3>
+        <p>Onboarding questions, integration setup, configuration issues or recurring how-tos. We look at last month's tickets together and choose the one that repeats most.</p>
+      </li>
+      <li>
+        <h3>We draft the replies</h3>
+        <p>Using your help centre, internal docs and the way your team has answered before, we prepare a draft for each new ticket in that category.</p>
+      </li>
+      <li>
+        <h3>Your team reviews and sends</h3>
+        <p>Agents approve, edit or discard each draft. We track what they changed and report weekly on what is genuinely worth automating.</p>
+      </li>
+    </ol>
+  </div>
 </section>
 
-<section id="how" style="max-width: 1180px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) clamp(20px, 5vw, 40px)">
-<div style="display: flex; flex-direction: column; gap: 16px; max-width: 680px; margin-bottom: 56px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #2F3FD0)">How it works</div>
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.03em; color: #0E1330; text-wrap: balance">Start narrow. Prove value. Expand only if it works.</h2>
-<p style="margin: 0; font-size: 18px; text-wrap: pretty">We begin with one repetitive ticket category, so your team can judge quality, speed and effort saved without changing your support operation overnight.</p>
-</div>
-<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px">
-<li style="background: #FFFFFF; border: 1px solid #DFE2EA; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13px; color: #596080">01</div>
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.02em; color: #0E1330">Choose one repetitive ticket category</h3>
-<p style="margin: 0; font-size: 16px">Onboarding questions, integration setup, configuration issues or recurring how-to requests. We pick the one that repeats most.</p>
-</li>
-<li style="background: #FFFFFF; border: 1px solid #DFE2EA; border-top: 3px solid var(--accent, #2F3FD0); border-radius: 18px; padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 14px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13px; color: var(--accent, #2F3FD0)">02</div>
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.02em; color: #0E1330">MitraLabs drafts the responses</h3>
-<p style="margin: 0; font-size: 16px">We use your existing support content and the way your team has answered before to prepare a draft for each ticket in that category.</p>
-</li>
-<li style="background: #FFFFFF; border: 1px solid #DFE2EA; border-top: 3px solid #B8500B; border-radius: 18px; padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 14px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13px; color: #8F3D06">03</div>
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.02em; color: #0E1330">Your team reviews and sends</h3>
-<p style="margin: 0; font-size: 16px">Agents approve, edit or discard each draft. We track what they changed and report weekly on what is actually worth automating.</p>
-</li>
-</ol>
+<section class="block" id="pilot">
+  <div class="wrap pilot">
+    <div>
+      <div class="sec-head" style="margin-bottom:0">
+        <h2>A 30-day pilot with a clear answer at the end</h2>
+        <p>One support category, thirty days, and a plain picture of where repetitive work can realistically be reduced. No long contract, no migration.</p>
+      </div>
+      <ul class="included">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Scoping for one repetitive ticket category</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Draft replies built on your existing knowledge base</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>A review step, so your team approves everything that's sent</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>A weekly report on volume, patterns and opportunities</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>A final review to decide whether to continue, expand or stop</li>
+      </ul>
+      <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20pilot">Ask about a pilot</a>
+    </div>
+
+    <figure class="report" id="report" style="margin:0">
+      <div class="report-head"><b>Your weekly report</b><span>Week 2 of 4</span></div>
+      <div class="kpis">
+        <div><b data-count="128">128</b><span>tickets drafted</span></div>
+        <div><b data-count="72" data-suffix="%">72%</b><span>sent without edits</span></div>
+        <div><b data-count="5">5</b><span>recurring themes</span></div>
+      </div>
+      <div class="bars">
+        <h3>What repeated this week</h3>
+        <div class="bar-row"><div><span>Rotating API credentials</span><span>41</span></div><div class="track"><div class="fill" style="--w:82%"></div></div></div>
+        <div class="bar-row"><div><span>Webhook setup</span><span>33</span></div><div class="track"><div class="fill" style="--w:66%"></div></div></div>
+        <div class="bar-row"><div><span>Adding team members</span><span>27</span></div><div class="track"><div class="fill" style="--w:54%"></div></div></div>
+      </div>
+      <figcaption class="insight">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:2px"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>
+        <span>Agents most often edited step 3 of the credentials reply. Updating that line in your setup guide would likely prevent a third of these tickets.</span>
+      </figcaption>
+      <p class="sample">Sample report with illustrative numbers.</p>
+    </figure>
+  </div>
 </section>
 
-<section id="pilot" style="background: #FFFFFF; border-top: 1px solid #DFE2EA; border-bottom: 1px solid #DFE2EA">
-<div style="max-width: 1180px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) clamp(20px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: clamp(40px, 5vw, 72px); align-items: start">
-<div style="display: flex; flex-direction: column; gap: 20px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #2F3FD0)">The 30-day pilot</div>
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.03em; color: #0E1330; text-wrap: balance">A low-risk way to find out whether this helps your team</h2>
-<p style="margin: 0; font-size: 18px; text-wrap: pretty">The pilot is narrow and measurable on purpose. One support category, thirty days, and a clear picture at the end of where repetitive work can realistically be reduced.</p>
-<ul style="list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column">
-<li style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid #ECEEF3; color: #0E1330"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F3FD0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 4px"><path d="M4 12.5l5 5L20 6.5"></path></svg><span>Scoping for one repetitive support-ticket category</span></li>
-<li style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid #ECEEF3; color: #0E1330"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F3FD0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 4px"><path d="M4 12.5l5 5L20 6.5"></path></svg><span>AI-assisted draft replies built on your existing knowledge base</span></li>
-<li style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid #ECEEF3; color: #0E1330"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F3FD0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 4px"><path d="M4 12.5l5 5L20 6.5"></path></svg><span>A human-reviewed workflow, so your team approves what is sent</span></li>
-<li style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid #ECEEF3; color: #0E1330"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F3FD0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 4px"><path d="M4 12.5l5 5L20 6.5"></path></svg><span>A weekly insight report with volume, patterns and opportunities</span></li>
-<li style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid #ECEEF3; border-bottom: 1px solid #ECEEF3; color: #0E1330"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F3FD0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 4px"><path d="M4 12.5l5 5L20 6.5"></path></svg><span>An end-of-pilot review to decide whether to continue, expand or stop</span></li>
-</ul>
-</div>
-
-<figure style="margin: 0; background: #F5F6F8; border: 1px solid #DFE2EA; border-radius: 22px; padding: clamp(22px, 3vw, 32px); display: flex; flex-direction: column; gap: 24px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #596080">
-<span>Weekly insight report</span>
-<span>Sample · illustrative figures</span>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr)); gap: 20px">
-<div style="display: flex; flex-direction: column; gap: 2px">
-<div style="font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 44px; line-height: 1; letter-spacing: -0.03em; color: #0E1330">128</div>
-<div style="font-size: 14.5px">tickets drafted</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 2px">
-<div style="font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 44px; line-height: 1; letter-spacing: -0.03em; color: #0E1330">72%</div>
-<div style="font-size: 14.5px">sent without edits</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 2px">
-<div style="font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 44px; line-height: 1; letter-spacing: -0.03em; color: #0E1330">5</div>
-<div style="font-size: 14.5px">recurring themes</div>
-</div>
-</div>
-<div style="background: #FFFFFF; border: 1px solid #DFE2EA; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
-<div style="font-size: 14px; font-weight: 600; color: #0E1330">What repeated this week</div>
-<div style="display: flex; flex-direction: column; gap: 12px; font-size: 14.5px">
-<div style="display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; justify-content: space-between; gap: 12px"><span>Rotating API credentials</span><span style="color: #596080">41</span></div>
-<div style="height: 6px; border-radius: 3px; background: #ECEEF3"><div style="width: 82%; height: 6px; border-radius: 3px; background: var(--accent, #2F3FD0)"></div></div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; justify-content: space-between; gap: 12px"><span>Webhook setup</span><span style="color: #596080">33</span></div>
-<div style="height: 6px; border-radius: 3px; background: #ECEEF3"><div style="width: 66%; height: 6px; border-radius: 3px; background: var(--accent, #2F3FD0)"></div></div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; justify-content: space-between; gap: 12px"><span>Adding team members</span><span style="color: #596080">27</span></div>
-<div style="height: 6px; border-radius: 3px; background: #ECEEF3"><div style="width: 54%; height: 6px; border-radius: 3px; background: var(--accent, #2F3FD0)"></div></div>
-</div>
-</div>
-</div>
-<figcaption style="display: flex; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #8F3D06; background: #FCEFE2; border-radius: 12px; padding: 14px 16px">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"></path></svg>
-<span>Agents most often edited step 3 of the credentials reply. Worth updating the setup guide.</span>
-</figcaption>
-</figure>
-</div>
+<section class="block dark" id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>More useful than a tool, less disruptive than outsourcing</h2>
+      <p>Most teams weigh three options for repetitive tickets. Here's how they compare.</p>
+    </div>
+    <div class="compare">
+      <table>
+        <thead><tr><th scope="col"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Question</span></th><th scope="col">Buying an AI tool</th><th scope="col" class="us">MitraLabs</th><th scope="col">Outsourcing support</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Getting started</th><td>Your team configures, tunes and maintains it</td><td class="us">We scope one category and set it up with you</td><td>Hand over the queue and onboard an outside team</td></tr>
+          <tr><th scope="row">Who sends replies</th><td>A bot, unless you build the review steps yourself</td><td class="us">Your agents, after reviewing a prepared draft</td><td>People outside your company</td></tr>
+          <tr><th scope="row">Change on day one</th><td>A new tool to roll out and learn</td><td class="us">None. Same help desk, same process</td><td>New process, new access, new handoffs</td></tr>
+          <tr><th scope="row">What you learn</th><td>Dashboards you interpret on your own</td><td class="us">A weekly report on what repeats and what still needs human judgment</td><td>Whatever the vendor chooses to share</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
-<section id="why" style="max-width: 1180px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) clamp(20px, 5vw, 40px)">
-<div style="display: flex; flex-direction: column; gap: 16px; max-width: 680px; margin-bottom: 48px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #2F3FD0)">Why teams use MitraLabs</div>
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.03em; color: #0E1330; text-wrap: balance">More than a tool, less disruptive than outsourcing your support team</h2>
-</div>
-<div style="overflow-x: auto; border: 1px solid #DFE2EA; border-radius: 20px; background: #FFFFFF">
-<table style="width: 100%; min-width: 760px; border-collapse: collapse; font-size: 15.5px; line-height: 1.5; text-align: left">
-<thead>
-<tr>
-<th scope="col" style="width: 19%; padding: 22px 24px; border-bottom: 1px solid #DFE2EA"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Question</span></th>
-<th scope="col" style="width: 26%; padding: 22px 24px; border-bottom: 1px solid #DFE2EA; font-weight: 500; color: #596080">Buying an AI tool</th>
-<th scope="col" style="width: 29%; padding: 22px 24px; border-bottom: 1px solid #DFE2EA; background: #0E1330; color: #FFFFFF; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.01em">MitraLabs</th>
-<th scope="col" style="width: 26%; padding: 22px 24px; border-bottom: 1px solid #DFE2EA; font-weight: 500; color: #596080">Outsourcing support</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row" style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; font-weight: 600; color: #0E1330; vertical-align: top">Getting started</th>
-<td style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; vertical-align: top">Your team configures, tunes and maintains it</td>
-<td style="padding: 20px 24px; border-bottom: 1px solid #DCDFF6; background: #ECEEFB; color: #0E1330; font-weight: 500; vertical-align: top">We scope one ticket category and set it up with you</td>
-<td style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; vertical-align: top">Hand over the queue and onboard an outside team</td>
-</tr>
-<tr>
-<th scope="row" style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; font-weight: 600; color: #0E1330; vertical-align: top">Who sends the reply</th>
-<td style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; vertical-align: top">A bot, unless you build the review steps yourself</td>
-<td style="padding: 20px 24px; border-bottom: 1px solid #DCDFF6; background: #ECEEFB; color: #0E1330; font-weight: 500; vertical-align: top">Your agents, after reviewing a prepared draft</td>
-<td style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; vertical-align: top">People outside your company</td>
-</tr>
-<tr>
-<th scope="row" style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; font-weight: 600; color: #0E1330; vertical-align: top">Change on day one</th>
-<td style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; vertical-align: top">A new tool to roll out and learn</td>
-<td style="padding: 20px 24px; border-bottom: 1px solid #DCDFF6; background: #ECEEFB; color: #0E1330; font-weight: 500; vertical-align: top">None. Same help desk, same process</td>
-<td style="padding: 20px 24px; border-bottom: 1px solid #ECEEF3; vertical-align: top">New process, new access, new handoffs</td>
-</tr>
-<tr>
-<th scope="row" style="padding: 20px 24px; font-weight: 600; color: #0E1330; vertical-align: top">What you learn</th>
-<td style="padding: 20px 24px; vertical-align: top">Dashboards you interpret on your own</td>
-<td style="padding: 20px 24px; background: #ECEEFB; color: #0E1330; font-weight: 500; vertical-align: top">A weekly report on what repeats, where quality is strong and what still needs human judgment</td>
-<td style="padding: 20px 24px; vertical-align: top">Depends on what the vendor chooses to share</td>
-</tr>
-</tbody>
-</table>
-</div>
+<section class="block" id="trust">
+  <div class="wrap trust">
+    <div class="sec-head" style="margin-bottom:0">
+      <h2>We know support data is sensitive</h2>
+      <p>We keep the pilot narrow, work with the minimum access needed and stay transparent about how information is handled.</p>
+    </div>
+    <div class="trust-list">
+      <div><h3>Minimum access</h3><p>Access is limited to what the chosen ticket category needs.</p></div>
+      <div><h3>Scope in writing</h3><p>One narrow category, agreed in writing before we start.</p></div>
+      <div><h3>Data deleted after</h3><p>Pilot support data is deleted within 30 days of the pilot ending.</p></div>
+      <div><h3>Your team has the last word</h3><p>Nothing reaches a customer without your agent sending it.</p></div>
+    </div>
+  </div>
 </section>
 
-<section id="trust" style="background: #FFFFFF; border-top: 1px solid #DFE2EA; border-bottom: 1px solid #DFE2EA">
-<div style="max-width: 1180px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) clamp(20px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: start">
-<div style="display: flex; flex-direction: column; gap: 20px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #2F3FD0)">Trust and data handling</div>
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.03em; color: #0E1330; text-wrap: balance">We know support data is sensitive</h2>
-<p style="margin: 0; font-size: 18px; text-wrap: pretty">Early conversations depend on trust. We keep the pilot narrow, work with the minimum access necessary and stay transparent about how information is handled.</p>
-</div>
-<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px">
-<li style="background: #F5F6F8; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E1330" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"></rect><path d="M8 10.5V7.5a4 4 0 018 0v3"></path></svg>
-<div style="font-weight: 600; color: #0E1330">Minimum access</div>
-<div style="font-size: 15.5px">Pilot access is limited to what the chosen category needs.</div>
-</li>
-<li style="background: #F5F6F8; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E1330" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="3"></circle></svg>
-<div style="font-weight: 600; color: #0E1330">Clearly defined scope</div>
-<div style="font-size: 15.5px">One narrow category, agreed in writing before we start.</div>
-</li>
-<li style="background: #F5F6F8; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E1330" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"></path><path d="M14 3.5v4h4"></path><path d="M10 13h5"></path><path d="M10 16.5h5"></path></svg>
-<div style="font-weight: 600; color: #0E1330">A data-handling note</div>
-<div style="font-size: 15.5px">A simple written note on how data is handled, shared during pilot discussions.</div>
-</li>
-<li style="background: #F5F6F8; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E1330" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8.5" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0113 0"></path><path d="M16 12.5l2 2 3.5-4"></path></svg>
-<div style="font-weight: 600; color: #0E1330">Your team has the last word</div>
-<div style="font-size: 15.5px">Customer-facing replies stay under your team's control.</div>
-</li>
-</ul>
-</div>
+<section class="block band" id="faq">
+  <div class="wrap">
+    <div class="sec-head"><h2>Common questions</h2></div>
+    <div class="faq">
+      <details><summary>Do you replace our support team?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans"><div><p>No. We prepare drafts for repetitive tickets and your agents decide what gets sent. The aim is to give them time back for complex customer issues.</p></div></div></details>
+      <details><summary>Do we need to change our help desk?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans"><div><p>No. The pilot runs alongside the help desk and process you use today. We agree the exact setup together on the intro call.</p></div></div></details>
+      <details><summary>Do you automate every ticket type?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans"><div><p>No. We start with one repetitive category and only suggest expanding where the weekly reports show quality is consistently strong.</p></div></div></details>
+      <details><summary>What happens after the pilot?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans"><div><p>We review the thirty days together and you decide whether to continue, expand to another category or stop. There's no obligation to carry on.</p></div></div></details>
+    </div>
+
+    <div class="founder">
+      <div class="face" aria-hidden="true">HS</div>
+      <div>
+        <h3>You'll work directly with Harshal Shinde, founder</h3>
+        <p>AI engineer with 6+ years in machine learning and generative AI. I set up and run every MitraLabs pilot personally, so you always talk to the person doing the work.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="faq" style="max-width: 1180px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) clamp(20px, 5vw, 40px)">
-<div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #2F3FD0)">FAQ</div>
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.03em; color: #0E1330">Common questions</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 0 clamp(32px, 5vw, 72px); border-top: 1px solid #DFE2EA">
-<div style="padding: 28px 0; border-bottom: 1px solid #DFE2EA; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.02em; color: #0E1330">Do you replace our support team?</h3>
-<p style="margin: 0; font-size: 16px">No. We prepare drafts for repetitive tickets and your agents decide what gets sent. The aim is to give them time back for complex customer issues.</p>
-</div>
-<div style="padding: 28px 0; border-bottom: 1px solid #DFE2EA; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.02em; color: #0E1330">Do we need to change our help desk?</h3>
-<p style="margin: 0; font-size: 16px">No. The pilot runs alongside the help desk and process you use today. We agree the exact setup together on the intro call.</p>
-</div>
-<div style="padding: 28px 0; border-bottom: 1px solid #DFE2EA; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.02em; color: #0E1330">Do you automate all ticket types?</h3>
-<p style="margin: 0; font-size: 16px">No. We start with one repetitive category and only suggest expanding where the weekly reports show quality is consistently strong.</p>
-</div>
-<div style="padding: 28px 0; border-bottom: 1px solid #DFE2EA; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.02em; color: #0E1330">What happens after the pilot?</h3>
-<p style="margin: 0; font-size: 16px">We review the thirty days together and you decide whether to continue, expand to another category or stop. There is no obligation to carry on.</p>
-</div>
-</div>
+<section class="block" id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>Could this work for your support team?</h2>
+        <p>Fifteen minutes is enough to look at your repetitive tickets and see whether a pilot makes sense.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call">Book a 15-minute intro</a>
+        <a class="btn-quiet" href="mailto:harshal@mitralabs.co">or email harshal@mitralabs.co</a>
+      </div>
+    </div>
+  </div>
 </section>
-
-<section aria-label="Founder" style="max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px) clamp(56px, 7vw, 96px)">
-<div style="background: #FFFFFF; border: 1px solid #DFE2EA; border-radius: 22px; padding: clamp(24px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 24px 36px">
-<div style="width: 88px; height: 88px; border-radius: 50%; background: #0E1330; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 30px; flex-shrink: 0">HS</div>
-<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 8px">
-<div style="font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #2F3FD0">Who you'll work with</div>
-<div style="font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.02em; color: #0E1330">Harshal Shinde, Founder</div>
-<p style="margin: 0; font-size: 16.5px; text-wrap: pretty">AI engineer with 6+ years in machine learning and generative AI. I set up and run every MitraLabs pilot personally, so you talk to the person doing the work.</p>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px 20px">
-<a href="mailto:harshal@mitralabs.co" style="display: inline-flex; align-items: center; min-height: 44px; color: #0E1330; font-weight: 500; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #A9AFC6">harshal@mitralabs.co</a>
-</div>
-</div>
-</section>
-<section id="contact" style="max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px) clamp(56px, 7vw, 96px)">
-<div style="background-color: #0E1330; background-image: radial-gradient(#2A3160 1px, transparent 1px); background-size: 22px 22px; border-radius: 28px; padding: clamp(36px, 6vw, 72px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 48px">
-<div style="display: flex; flex-direction: column; gap: 16px; flex: 1 1 460px; max-width: 620px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: clamp(30px, 3.8vw, 46px); line-height: 1.08; letter-spacing: -0.03em; color: #FFFFFF; text-wrap: balance">Curious whether this could work for your support team?</h2>
-<p style="margin: 0; font-size: 18px; color: #C9CEE4; text-wrap: pretty">We are currently speaking with B2B software teams that want to reduce repetitive support work without losing control of quality. Fifteen minutes is enough to see if there is a fit.</p>
-</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px">
-<a href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; background: #FFFFFF; color: #0E1330; text-decoration: none; font-size: 17px; font-weight: 500">Book a 15-minute intro
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-</a>
-<a href="mailto:harshal@mitralabs.co" style="display: inline-flex; align-items: center; min-height: 44px; color: #FFFFFF; font-size: 16px; font-weight: 500; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #7C84AD">or email Harshal</a>
-</div>
-</div>
-</section>
-
 </main>
 
-<footer style="border-top: 1px solid #DFE2EA">
-<div style="max-width: 1180px; margin: 0 auto; padding: 28px clamp(20px, 5vw, 40px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; font-size: 14.5px; color: #596080">
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px">
-<span style="font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.02em; color: #0E1330">MitraLabs</span>
-<span>Managed support operations for B2B software teams</span>
-</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px">
-<a href="mailto:harshal@mitralabs.co" style="color: #3A4160; text-decoration: none; padding: 12px 0">harshal@mitralabs.co</a>
-<a href="#trust" style="color: #3A4160; text-decoration: none; padding: 12px 0">Privacy &amp; data</a>
-<span>© 2026 MitraLabs</span>
-</div>
-</div>
+<footer>
+  <div class="wrap">
+    <span><b style="color:var(--ink);font-family:var(--display)">MitraLabs</b> · Managed support operations for B2B software teams</span>
+    <nav aria-label="Footer"><a href="mailto:harshal@mitralabs.co">harshal@mitralabs.co</a><a href="#trust">Privacy &amp; data</a><span>© 2026 MitraLabs</span></nav>
+  </div>
 </footer>
 
-</div>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var top = document.querySelector('.top');
+  window.addEventListener('scroll', function(){ top.classList.toggle('scrolled', window.scrollY > 8); }, {passive:true});
 
+  // Report: animate bars and count up once when it scrolls into view
+  var report = document.getElementById('report');
+  function countUp(el){
+    var target = +el.dataset.count, suffix = el.dataset.suffix || '', t0 = null, dur = 1100;
+    function step(t){ if(!t0) t0 = t; var p = Math.min((t - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * e) + suffix; if(p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if(en.isIntersecting){
+      report.classList.add('in-view'); report.querySelectorAll('[data-count]').forEach(countUp); io.disconnect(); }}); }, {threshold:.35});
+    io.observe(report);
+  } else { report.classList.add('in-view'); }
+
+  // Hero demo: a ticket arrives, the draft writes itself, an agent edits and sends it
+  var tickets = [
+    {from:'Maya, Northwind Analytics', q:'How do I reconnect our integration after rotating API credentials?', src:'From your setup guide + 3 past replies',
+     body:["Here’s how to reconnect:",'1. Paste the new key in Settings → Integrations.','2. Check the redirect URL matches.','3. Test the connection '],
+     old:'from the dashboard', fix:'with the /health endpoint', tail:'.', reviewer:'PR', note:'Priya made one edit'},
+    {from:'Daniel, Brightlane', q:'Webhooks stopped firing after we changed our domain. What do we update?', src:'From your webhook docs + 2 past replies',
+     body:['Webhooks use the URL you registered, so:','1. Open Settings → Webhooks.','2. Update the endpoint to the new domain.','3. Send a test event '],
+     old:'and wait a few minutes', fix:'and check the delivery log', tail:'.', reviewer:'AK', note:'Arjun made one edit'},
+    {from:'Sofia, Cartwheel', q:'Can I add five more people to our workspace without changing plans?', src:'From your pricing page + 4 past replies',
+     body:['Yes, your plan includes up to 25 seats.','1. Go to Team → Members → Invite.','2. Paste their emails, one per line.',"3. They’ll get a sign-in link "],
+     old:'', fix:'', tail:'within a few minutes.', reviewer:'PR', note:'Priya approved without edits'}
+  ];
+  var queueEl = document.getElementById('queue'), qEl = document.getElementById('question'), fromEl = document.getElementById('from'),
+      bodyEl = document.getElementById('body'), srcEl = document.getElementById('source'), draftEl = document.getElementById('draft'),
+      revEl = document.getElementById('reviewer'), noteEl = document.getElementById('reviewNote'), sendEl = document.getElementById('send'),
+      drafted = document.getElementById('sDrafted'), avatar = revEl.querySelector('.avatar');
+  var count = 126, i = 0;
+
+  var backlog = [['Ana, Pilotstack','SSO login loops back to sign-in']];
+  function renderQueue(activeIdx){
+    queueEl.innerHTML = '';
+    tickets.forEach(function(t, k){
+      var d = document.createElement('div');
+      d.className = 'q-item' + (k === activeIdx ? ' active new' : '') + (k < activeIdx ? ' done' : '');
+      d.innerHTML = '<b>' + t.from.split(',')[0] + ', ' + t.from.split(', ')[1] + '</b>' + t.q.slice(0, 34) + '…<br><span class="tag">' + (k < activeIdx ? 'Sent' : k === activeIdx ? 'Drafting' : 'Queued') + '</span>';
+      queueEl.appendChild(d);
+    });
+    backlog.forEach(function(b){ var d = document.createElement('div'); d.className = 'q-item'; d.innerHTML = '<b>' + b[0] + '</b>' + b[1] + '<br><span class="tag">Queued</span>'; queueEl.appendChild(d); });
+  }
+  function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function finalHTML(t, edited){
+    var lines = t.body.slice(0, -1).map(esc), last = esc(t.body[t.body.length - 1]);
+    var end = t.old ? (edited ? '<span class="edit-old">' + esc(t.old) + '</span> <span class="edit-new">' + esc(t.fix) + '</span>' : esc(t.old)) : '';
+    return lines.join('<br>') + '<br>' + last + end + esc(t.tail);
+  }
+
+  async function play(t, idx){
+    renderQueue(idx);
+    fromEl.textContent = t.from; qEl.textContent = t.q; srcEl.textContent = t.src;
+    draftEl.classList.remove('ready'); revEl.classList.remove('show'); sendEl.className = 'send'; sendEl.textContent = 'Send reply';
+    avatar.textContent = t.reviewer; noteEl.textContent = t.note;
+    bodyEl.innerHTML = '<span class="caret"></span>';
+    await wait(700);
+    var full = t.body.join('\n') + (t.old || '') + t.tail, out = '';
+    for (var c = 0; c < full.length; c++){
+      out += full[c];
+      bodyEl.innerHTML = esc(out).replace(/\n/g, '<br>') + '<span class="caret"></span>';
+      await wait(full[c] === '\n' ? 140 : 16);
+    }
+    bodyEl.innerHTML = finalHTML(t, false);
+    draftEl.classList.add('ready');
+    await wait(900);
+    if (t.old){ bodyEl.innerHTML = finalHTML(t, true); }
+    revEl.classList.add('show');
+    sendEl.className = 'send armed';
+    await wait(1300);
+    sendEl.className = 'send sent'; sendEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Sent';
+    count++; drafted.textContent = count;
+    renderQueue(idx + 1);
+    await wait(2200);
+  }
+
+  if (reduce){
+    renderQueue(1); var t = tickets[0];
+    fromEl.textContent = t.from; qEl.textContent = t.q; srcEl.textContent = t.src;
+    bodyEl.innerHTML = finalHTML(t, true); draftEl.classList.add('ready'); revEl.classList.add('show');
+    sendEl.className = 'send sent'; sendEl.textContent = 'Sent';
+    return;
+  }
+  (async function loop(){ while(true){ await play(tickets[i], i); i = (i + 1) % tickets.length; } })();
+})();
+</script>
 </body>
 </html>
