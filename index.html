@@ -231,7 +231,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 26px}
       <a href="#why">Why us</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call"><span class="long">Book a 15-minute intro</span><span class="short">Book intro</span></a>
+    <a class="btn btn-primary" href="https://cal.com/mitra-labs/15min" target="_blank" rel="noopener" data-cal-link="mitra-labs/15min" data-cal-namespace="intro" data-cal-config='{"layout":"month_view","theme":"light"}'><span class="long">Book a 15-minute intro</span><span class="short">Book intro</span></a>
   </div>
 </header>
 
@@ -243,7 +243,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 26px}
       <h1><span class="line">Repeat tickets,</span><span class="line">drafted for you.</span><span class="line"><span class="sent">Sent by your team.</span></span></h1>
       <p class="lede">We draft replies to your most repetitive support tickets from your own docs and past answers. Your agents review and send them from the help desk you already use, and every week you see what keeps coming up.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call">Book a 15-minute intro</a>
+        <a class="btn btn-primary" href="https://cal.com/mitra-labs/15min" target="_blank" rel="noopener" data-cal-link="mitra-labs/15min" data-cal-namespace="intro" data-cal-config='{"layout":"month_view","theme":"light"}'>Book a 15-minute intro</a>
         <a class="btn-quiet" href="#pilot">See how the pilot works</a>
       </div>
       <div class="trust-row">
@@ -327,7 +327,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 26px}
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>A weekly report on volume, patterns and opportunities</li>
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>A final review to decide whether to continue, expand or stop</li>
       </ul>
-      <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20pilot">Ask about a pilot</a>
+      <a class="btn btn-primary" href="https://cal.com/mitra-labs/15min" target="_blank" rel="noopener" data-cal-link="mitra-labs/15min" data-cal-namespace="intro" data-cal-config='{"layout":"month_view","theme":"light"}'>Book a call about a pilot</a>
     </div>
 
     <figure class="report" id="report" style="margin:0">
@@ -415,7 +415,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 26px}
         <p>Fifteen minutes is enough to look at your repetitive tickets and see whether a pilot makes sense.</p>
       </div>
       <div class="actions">
-        <a class="btn btn-primary" href="mailto:harshal@mitralabs.co?subject=MitraLabs%20intro%20call">Book a 15-minute intro</a>
+        <a class="btn btn-primary" href="https://cal.com/mitra-labs/15min" target="_blank" rel="noopener" data-cal-link="mitra-labs/15min" data-cal-namespace="intro" data-cal-config='{"layout":"month_view","theme":"light"}'>Book a 15-minute intro</a>
         <a class="btn-quiet" href="mailto:harshal@mitralabs.co">or email harshal@mitralabs.co</a>
       </div>
     </div>
@@ -523,6 +523,13 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 26px}
   }
   (async function loop(){ while(true){ await play(tickets[i], i); i = (i + 1) % tickets.length; } })();
 })();
+</script>
+<script>
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "intro", { origin: "https://app.cal.com" });
+Cal.ns.intro("ui", { theme: "light", hideEventTypeDetails: false, layout: "month_view", cssVarsPerTheme: { light: { "cal-brand": "#15211D" } } });
+// Open the popup instead of following the link; the link stays as a fallback if the script is blocked
+document.querySelectorAll('[data-cal-link]').forEach(function (a) { a.addEventListener('click', function (e) { if (window.Cal && Cal.loaded) { e.preventDefault(); } }); });
 </script>
 </body>
 </html>
